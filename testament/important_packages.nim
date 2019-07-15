@@ -79,6 +79,7 @@ pkg "unicodeplus", "", true
 pkg "unpack"
 pkg "with"
 # pkg "winim", "", true
+pkg "wnim", "nim c --passL:-s --app:gui examples/demo", true
 pkg "ws"
 pkg "yaml"
 pkg "zero_functional", "nim c -r test.nim"
