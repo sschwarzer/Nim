@@ -406,8 +406,9 @@ proc subInt(a, b: int): int {.asmNoStackFrame, compilerproc.} =
 
 proc mulInt(a, b: int): int {.asmNoStackFrame, compilerproc.} =
   asm """
-    var result = `a` * `b`;
-    if (result > 2147483647 || result < -2147483648) `raiseOverflow`();
+    var result1 = `a` * `b`;
+    var result = Math.imul(`a`, `b`);
+    if (result1 > 2147483647 || result1 < -2147483648) `raiseOverflow`();
     return result;
   """
 

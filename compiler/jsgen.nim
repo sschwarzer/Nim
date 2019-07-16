@@ -553,7 +553,7 @@ proc arithAux(p: PProc, n: PNode, r: var TCompRes, op: TMagic) =
   case op:
   of mAddI: applyFormat("addInt($1, $2)", "($1 + $2)")
   of mSubI: applyFormat("subInt($1, $2)", "($1 - $2)")
-  of mMulI: applyFormat("mulInt($1, $2)", "($1 * $2)")
+  of mMulI: applyFormat("mulInt($1, $2)", "Math.imul($1, $2)")
   of mDivI: applyFormat("divInt($1, $2)", "Math.trunc($1 / $2)")
   of mModI: applyFormat("modInt($1, $2)", "Math.trunc($1 % $2)")
   of mSucc: applyFormat("addInt($1, $2)", "($1 + $2)")
@@ -574,7 +574,7 @@ proc arithAux(p: PProc, n: PNode, r: var TCompRes, op: TMagic) =
   of mMaxF64: applyFormat("nimMax($1, $2)", "nimMax($1, $2)")
   of mAddU: applyFormat("", "")
   of mSubU: applyFormat("", "")
-  of mMulU: applyFormat("", "")
+  of mMulU: applyFormat("Math.imul($1, $2)", "Math.imul($1, $2)")
   of mDivU: applyFormat("", "")
   of mModU: applyFormat("($1 % $2)", "($1 % $2)")
   of mEqI: applyFormat("($1 == $2)", "($1 == $2)")
@@ -630,7 +630,7 @@ proc arith(p: PProc, n: PNode, r: var TCompRes, op: TMagic) =
   case op
   of mAddU: binaryUintExpr(p, n, r, "+")
   of mSubU: binaryUintExpr(p, n, r, "-")
-  of mMulU: binaryUintExpr(p, n, r, "*")
+  of mMulU: arithAux(p, n, r, op)
   of mDivU: binaryUintExpr(p, n, r, "/")
   of mDivI:
     arithAux(p, n, r, op)
